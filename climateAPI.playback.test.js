@@ -7,7 +7,6 @@ const climateAPI = new ClimateAPI("http://localhost:61417");
 var forked = null;
 
 beforeAll(() => {
-    console.log("beforeAll 1");
 
     forked = fork('servirtium.js', { silent: true });
     forked.stdout.on('data', function (chunk) {
@@ -19,8 +18,6 @@ beforeAll(() => {
         console.log('Message from child', msg);
     });
 
-    console.log("beforeAll 2");
-
     const sleep = (milliseconds) => {
         return new Promise(resolve => setTimeout(resolve, milliseconds))
     };
@@ -31,7 +28,6 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-    console.log("STOPPING");
     jquery.ajax({
         async: false,
         type: "GET",

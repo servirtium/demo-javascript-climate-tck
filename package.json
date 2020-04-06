@@ -5,6 +5,7 @@
   },
   "devDependencies": {
     "child_process": "^1.0.2",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "jest": "^25.2.7",
     "jquery": "^3.4.1"
