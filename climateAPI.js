@@ -1,4 +1,4 @@
-var jquery = require('jquery');
+const jquery = require('jquery');
 
 class ClimateAPI {
 
@@ -18,6 +18,7 @@ class ClimateAPI {
           + fromCCYY + "/" + toCCYY + "/" + countryISO + ".xml",
       dataType: "xml",
       success: function (doc, code, response) {
+        console.log("SUCCESS " + code + response.responseText);
         if (response.responseText === "<list/>") {
           err = "no data for date range";
         } else {
@@ -27,9 +28,10 @@ class ClimateAPI {
           });
         }
       },
-      error: function (data) {
+      error: function (data, textStatus, errorThrown) {
+        console.log("ERRORRRR " + textStatus + " " + errorThrown);
         err = data.responseText;
-        console.log("err " + data.responseText)
+        console.log("err " + data.responseText);
       }
     });
 

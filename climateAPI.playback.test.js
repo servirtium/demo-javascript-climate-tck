@@ -1,14 +1,15 @@
+const jquery = require('jquery');
 ClimateAPI = require('./climateAPI');
 const { fork } = require('child_process');
 
-const climateAPI = new ClimateAPI("https://localhost:61417");
+const climateAPI = new ClimateAPI("http://localhost:61417");
 
 var forked = null;
 
 beforeAll(() => {
     console.log("beforeAll 1");
 
-    forked = fork('/scm/oss/servirtium/foo/servirtium.js', { silent: true });
+    forked = fork('servirtium.js', { silent: true });
     forked.stdout.on('data', function (chunk) {
         console.log("Stdout in child: " + chunk);
     });
@@ -24,17 +25,21 @@ beforeAll(() => {
         return new Promise(resolve => setTimeout(resolve, milliseconds))
     };
 
-    sleep(2000).then(() => {
+    sleep(10000).then(() => {
         // give servirtium listener time to come up
     });
 });
 
 afterAll(() => {
     console.log("STOPPING");
-    forked.send({ stop: 'now' });
+    jquery.ajax({
+        async: false,
+        type: "GET",
+        url: this.baseUrl + "/*SERVIRTIUM*STOP*/",
+    });
 });
 
-test('one', () => {
-    console.log("hi");
+test('average Rainfall For Great Britain From 1980 to 1999 Exists', () => {
+    expect(climateAPI.getAveAnnualRainfall(1980, 1999, "gbr")).toBeCloseTo(988.8454972331015);
 });
 

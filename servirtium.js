@@ -3,14 +3,13 @@ const app = express();
 const port = 61417;
 var server;
 
-process.on('message', (msg) => {
-    // only message we send is to close.
-    server.close();
+app.get('/*', (req, res) => {
+    if (req.route.path.includes("*SERVIRTIUM*STOP*")) {
+        server.close();
+        return res.send('OK');
+    }
+    console.log("route:" + req.route.path );
+    res.send('<list/>');
 });
 
-app.get('/', (req, res) => {
-    process.send({ last_route: req.route.path });
-    return res.send('<list/>');
-});
-
-server = app.listen(port);
+server = app.listen(port, 'localhost');
