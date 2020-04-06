@@ -27,13 +27,6 @@ beforeAll(() => {
     });
 });
 
-afterAll(() => {
-    jquery.ajax({
-        async: false,
-        type: "GET",
-        url: this.baseUrl + "/*SERVIRTIUM*STOP*/",
-    });
-});
 
 test('average Rainfall For Great Britain From 1980 to 1999 Exists', () => {
     expect(climateAPI.getAveAnnualRainfall(1980, 1999, "gbr")).toBeCloseTo(988.8454972331015);
