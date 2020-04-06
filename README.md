@@ -9,6 +9,7 @@ This repo is following the guide at https://github.com/servirtium/README/blob/ma
 ```
 yarn add --dev jest
 yarn add --dev jquery
+yarn add --dev child_process
 ```
 
 ## Run tests
