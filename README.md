@@ -1,0 +1,1 @@
+https://github.com/servirtium/README/blob/master/starting-a-new-implementation.md - currently at step 1

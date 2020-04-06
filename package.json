@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^25.2.7",
+    "jquery": "^3.4.1"
+  }
+}
