@@ -30,11 +30,10 @@ class ClimateAPI {
       error: function (data) {
         err = data.responseText;
         console.log("err " + data.responseText)
-        // comunicate nature of error
       }
     });
 
-    if (tot > 0) {
+    if (ct > 0) {
       return tot / ct;
     } else {
       return err;
