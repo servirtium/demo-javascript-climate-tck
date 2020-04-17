@@ -1,12 +1,14 @@
+const http = require('http')
+const httpShutdownWrapper = require('http-shutdown')
 const express = require('express');
 var cors = require('cors');
 const app = express();
 app.use(cors());
 const port = 61417;
-var server;
+const jquery = require('jquery');
 
 app.get('/*', (req, res) => {
-    console.log("route:" + req.route.path );
+    console.log(`route: ${req.route.path}, url: ${req.url}`);
     res.send('<list>\n' +
         '  <domain.web.AnnualGcmDatum>\n' +
         '    <gcm>bccr_bcm2_0</gcm>\n' +
@@ -146,4 +148,22 @@ app.get('/*', (req, res) => {
         '</list>');
 });
 
-server = app.listen(port, 'localhost');
+let server;
+
+module.exports = {
+  start: ()=>new Promise((res, rej) =>{
+    server = httpShutdownWrapper(http.createServer(app));
+    server.listen(port, 'localhost', (err)=> {
+      console.log(`Servirtium listening on port ${port}`);
+      res(server)
+    });
+
+  }),
+  stop: ()=>new Promise((res, rej) =>{
+    server.shutdown(()=>{
+      console.log(`Servirtium graceful shutdown complete`);
+      res()
+    })
+      
+  })
+}

@@ -1,4 +1,5 @@
-const jquery = require('jquery');
+const http = require('axios');
+const xml2js = require('xml2js')
 
 class ClimateAPI {
 
@@ -6,38 +7,43 @@ class ClimateAPI {
     this.baseUrl = baseUrl;
   }
 
-  getAveAnnualRainfall(fromCCYY, toCCYY, countryISO) {
+  async getAveAnnualRainfall(fromCCYY, toCCYY, countryISO) {
     var tot = 0;
     var ct = 0;
-    var err = "";
-
-    jquery.ajax({
-      async: false,
-      type: "GET",
-      url: this.baseUrl + "/climateweb/rest/v1/country/annualavg/pr/"
-          + fromCCYY + "/" + toCCYY + "/" + countryISO + ".xml",
-      dataType: "xml",
-      success: function (doc, code, response) {
-        if (response.responseText === "<list/>") {
-          err = "no data for date range";
-        } else {
-          jquery(doc).find("annualData").each(function () {
-            tot = tot + parseFloat(jquery(this).first().text());
-            ct = ct + 1;
-          });
-        }
-      },
-      error: function (data, textStatus, errorThrown) {
-        err = data.responseText;
-        console.log("err " + data.responseText);
-      }
-    });
-
-    if (ct > 0) {
-      return tot / ct;
-    } else {
-      return err;
+    let url = `${this.baseUrl}/climateweb/rest/v1/country/annualavg/pr/${fromCCYY}/${toCCYY}/${countryISO}.xml`;
+    console.log(`Request URL: ${url}`)
+    let response, parsedResponse
+    try
+    {
+      
+      response = await http.get(url, {
+        headers: {'Accept': 'text/xml'},
+        responseType:'text'
+      });
     }
+    catch(requestError) {
+      return requestError;
+    }
+    try{
+       parsedResponse = await xml2js.parseStringPromise(response.data);
+    }
+    catch (parseError)
+    {
+      return response.data;
+    }
+    let annualDataRoot = parsedResponse.list["domain.web.AnnualGcmDatum"]
+    
+    if (annualDataRoot) {
+      annualDataRoot.flatMap(gcm=>gcm.annualData)
+        .forEach((valueElement)=> {
+          tot = tot + parseFloat(valueElement.double);
+          ct = ct + 1;
+        });
+    }
+    else {
+      return "no data for date range";
+    }
+    return tot / ct;
   }
 }
 
