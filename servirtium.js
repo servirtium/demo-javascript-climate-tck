@@ -1,5 +1,5 @@
-const http = require('http')
-const httpShutdownWrapper = require('http-shutdown')
+const http = require('http');
+const httpShutdownWrapper = require('http-shutdown');
 const express = require('express');
 var cors = require('cors');
 const app = express();

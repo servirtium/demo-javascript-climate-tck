@@ -7,9 +7,7 @@ This repo is following the guide at https://github.com/servirtium/README/blob/ma
 ## Yarn installs
 
 ```
-yarn add --dev jest
-yarn add --dev jquery
-yarn add --dev child_process
+yarn add --dev jest jquery axios xml2js
 ```
 
 ## Run tests

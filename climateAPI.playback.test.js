@@ -2,7 +2,6 @@ ClimateAPI = require('./climateAPI');
 const servirtium = require('./servirtium');
 const climateAPI = new ClimateAPI("http://localhost:61417");
 
-
 beforeAll(async () => {
     await servirtium.start();
 });
@@ -14,4 +13,4 @@ test('average Rainfall For Great Britain From 1980 to 1999 Exists', async () => 
 
 afterAll(async ()=> {
     await servirtium.stop();
-})
+});
