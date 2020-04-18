@@ -12,8 +12,9 @@ app.get('/*', (req, res) => {
     console.log(`test_context: ${test_context}`);
     let path = './mocks/' + test_context.replace(/ /g, '_') + '.md';
     var body = fs.readFileSync(path, 'utf8');
+    chunks = body.split("\n### ");
     console.log(`route: ${req.route.path}, url: ${req.url}`);
-    res.send(body);
+    res.send(chunks[4].split('\n```\n')[1]);
 });
 
 let server;
