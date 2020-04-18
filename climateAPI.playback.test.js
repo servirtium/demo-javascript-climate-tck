@@ -1,5 +1,5 @@
 ClimateAPI = require('./climateAPI');
-const servirtium = require('./servirtium');
+const servirtium = require('./servirtium_playback');
 const climateAPI = new ClimateAPI("http://localhost:61417");
 
 beforeAll(async () => {
