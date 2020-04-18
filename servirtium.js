@@ -11,10 +11,26 @@ const jquery = require('jquery');
 app.get('/*', (req, res) => {
     console.log(`test_context: ${test_context}`);
     let path = './mocks/' + test_context.replace(/ /g, '_') + '.md';
-    var body = fs.readFileSync(path, 'utf8');
-    chunks = body.split("\n### ");
+    var markdown = fs.readFileSync(path, 'utf8');
+
+    var h3s = markdown.split("\n").filter(item => item.startsWith("### ")).join('\n');
+
+    // TODO - confirm that 'h3s' is .. though that has variables
+    // console.log(h3s);
+    //       ### Request headers recorded for playback:
+    //       ### Request body recorded for playback (VAR):
+    //       ### Response headers recorded for playback:
+    //       ### Response body recorded for playback (VAR2: VAR3):
+
+    chunks = markdown.split("\n### ");
     console.log(`route: ${req.route.path}, url: ${req.url}`);
+
     var response_headers = [];
+    // TODO verify request headers, and fail if not expected
+    chunks[1].split('\n```\n')[1];
+    // TODO verify request body, and fail if not expected
+    chunks[2].split('\n```\n')[1];
+
     response_headerz = chunks[3].split('\n```\n')[1].split("\n");
     for (h in response_headerz) {
         response_headers[h.split(": ")[0]] = h.split(": ")[1]
