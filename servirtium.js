@@ -14,6 +14,12 @@ app.get('/*', (req, res) => {
     var body = fs.readFileSync(path, 'utf8');
     chunks = body.split("\n### ");
     console.log(`route: ${req.route.path}, url: ${req.url}`);
+    var response_headers = [];
+    response_headerz = chunks[3].split('\n```\n')[1].split("\n");
+    for (h in response_headerz) {
+        response_headers[h.split(": ")[0]] = h.split(": ")[1]
+    }
+    res.set(response_headers);
     res.send(chunks[4].split('\n```\n')[1]);
 });
 
