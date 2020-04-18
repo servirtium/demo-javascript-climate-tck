@@ -9,7 +9,6 @@ const port = 61417;
 const jquery = require('jquery');
 
 app.get('/*', (req, res) => {
-    console.log(`test_context: ${test_context}`);
     let path = './mocks/' + test_context.replace(/ /g, '_') + '.md';
     var markdown = fs.readFileSync(path, 'utf8');
 
@@ -23,7 +22,6 @@ app.get('/*', (req, res) => {
     //       ### Response body recorded for playback (VAR2: VAR3):
 
     chunks = markdown.split("\n### ");
-    console.log(`route: ${req.route.path}, url: ${req.url}`);
 
     var response_headers = [];
     // TODO verify request headers, and fail if not expected
