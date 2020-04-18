@@ -6,7 +6,6 @@ var cors = require('cors');
 const app = express();
 app.use(cors());
 const port = 61417;
-const jquery = require('jquery');
 
 app.get('/*', (req, res) => {
     let path = './mocks/' + test_context.replace(/ /g, '_') + '.md';
