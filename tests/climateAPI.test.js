@@ -2,19 +2,24 @@ const ClimateAPI = require('../climateAPI');
 const servirtium = require('../servirtium_playback');
 
 describe("ClimateAPI", ()=>{
-  describe("ClimateAPI against live API", ()=>{
+  describe("live API", ()=>{
     testClimateAPI(undefined);
   });
-  describe("ClimateAPI against virtualized API", ()=>{
+
+  describe("virtualized API", ()=>{
+    beforeAll(async () => {
+      await servirtium.start();
+    });
+
+    afterAll(async ()=> {
+      await servirtium.stop();
+    });
+
     testClimateAPI("http://localhost:61417");
   });
 });
 
 function testClimateAPI(baseUrl){
-  beforeAll(async () => {
-      await servirtium.start();
-  });
-
   const climateAPI = new ClimateAPI(baseUrl);
 
   test('average Rainfall For Great Britain From 1980 to 1999 Exists', async () => {
@@ -42,7 +47,4 @@ function testClimateAPI(baseUrl){
       expect(await climateAPI.getAveAnnualRainfall(1980, 1999, "mde")).toBe("Invalid country code. Three letters are required");
   });
 
-  afterAll(async ()=> {
-      await servirtium.stop();
-  });
 }
