@@ -115,21 +115,39 @@ describe('servertium recorder', ()=>{
         }
       );
 
+      // give the recorder a moment to write this interaction to disk
+      await sleep(40);
+
       const recorded = await fs.readFile(recordPath,{encoding:'UTF-8'});
 
       // TODO: request body, request headers, response headers, response status code
       const expectedRecording = theredoc`
         ## Interaction 0: GET /200?foo=bar
 
+        ### Request headers recorded for playback:
+
+        \`\`\`
+        Accept: application/json
+        User-Agent: axios/0.19.2
+        Host: localhost:61416
+        Connection: close
+        \`\`\`
+
         ### Response body recorded for playback
 
         \`\`\`
         {"code": 200, "description": "OK"}
         \`\`\`
-
       `;
 
       expect(recorded).toBe(expectedRecording);
     });
   });
 });
+
+
+function sleep(ms){
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}

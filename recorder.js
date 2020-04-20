@@ -1,4 +1,5 @@
 const fs = require('fs').promises;
+const {NULL_INTERACTION,createInteraction} = require('./interaction');
 
 // This is still a work in progress.
 
@@ -17,21 +18,15 @@ module.exports = async function createRecorder(recordPath){
 
   const file = await fs.open(recordPath,'w');
 
-  async function recordInteraction({method,path,response}){
-    await file.write(`## Interaction 0: ${method} ${path}\n\n`);
-
-    await file.write('### Response body recorded for playback\n\n');
-
-    await file.write('```\n');
-    await file.write(response.bodyBuffer);
-    await file.write('\n```\n');
+  function newInteraction(){
+    return createInteraction(file);
   }
 
   return {
-    recordInteraction
+    newInteraction,
   };
 }
 
 const NULL_RECORDER = {
-  recordInteraction(){}
+  newInteraction(){ return NULL_INTERACTION; }
 }

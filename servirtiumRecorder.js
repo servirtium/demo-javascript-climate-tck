@@ -1,5 +1,4 @@
 const http = require('http');
-const {WritableStreamBuffer} = require('stream-buffers');
 
 const createRecorder = require('./recorder');
 
@@ -40,10 +39,15 @@ function startMitmServer({mitmPort,backendPort,backendHost,recorder}){
     url.port = backendPort;
     url.host = backendHost;
 
-    let headers = {...mitmReq.headers, 'foo':'asdfasdf'};
+    let headers = {...mitmReq.headers};
     delete headers.host;
 
-    const responseTap = new WritableStreamBuffer();
+    const interaction = recorder.newInteraction();
+    interaction.recordRequestFrontMatter({
+      method: mitmReq.method,
+      url,
+      rawHeaders: mitmReq.rawHeaders
+    });
 
     const backendReq = http.request(
       url,
@@ -58,19 +62,7 @@ function startMitmServer({mitmPort,backendPort,backendHost,recorder}){
           backendRes.headers
         );
         backendRes.pipe(mitmRes);
-        backendRes.pipe(responseTap);
-
-        backendRes.on('end', ()=> {
-          const fullPath = [url.pathname,url.search,url.hash].join('');
-
-          recorder.recordInteraction({
-            method:mitmReq.method,
-            path:fullPath,
-            response:{
-              bodyBuffer: responseTap.getContents()
-            }
-          });
-        });
+        interaction.tapResponseStream(backendRes);
     });
     backendReq.end();
   });
