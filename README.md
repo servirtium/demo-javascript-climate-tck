@@ -7,7 +7,7 @@ This repo is following the guide at https://github.com/servirtium/README/blob/ma
 ## Yarn installs
 
 ```
-yarn add --dev jest
+yarn install
 ```
 
 ## Run tests
