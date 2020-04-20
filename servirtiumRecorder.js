@@ -1,4 +1,6 @@
 const http = require('http');
+const {WritableStreamBuffer} = require('stream-buffers');
+
 const createRecorder = require('./recorder');
 
 const HARDCODED_PORT = 61416; // TODO: use get-port or similar to dynamically generate the port
@@ -41,6 +43,8 @@ function startMitmServer({mitmPort,backendPort,backendHost,recorder}){
     let headers = {...mitmReq.headers, 'foo':'asdfasdf'};
     delete headers.host;
 
+    const responseTap = new WritableStreamBuffer();
+
     const backendReq = http.request(
       url,
       {
@@ -54,15 +58,22 @@ function startMitmServer({mitmPort,backendPort,backendHost,recorder}){
           backendRes.headers
         );
         backendRes.pipe(mitmRes);
+        backendRes.pipe(responseTap);
+
+        backendRes.on('end', ()=> {
+          const fullPath = [url.pathname,url.search,url.hash].join('');
+
+          recorder.recordInteraction({
+            method:mitmReq.method,
+            path:fullPath,
+            response:{
+              bodyBuffer: responseTap.getContents()
+            }
+          });
+        });
     });
-
     backendReq.end();
-
-    const fullPath = [url.pathname,url.search,url.hash].join('');
-
-    recorder.recordInteraction({method:mitmReq.method,path:fullPath});
   });
-
 
   return new Promise( (resolve,reject) => {
     mitmServer.on('listening',()=>resolve(mitmServer));

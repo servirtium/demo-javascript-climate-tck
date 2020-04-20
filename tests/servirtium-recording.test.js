@@ -1,6 +1,7 @@
 const axios = require('axios');
 const tmp = require('tmp');
 const fs = require('fs').promises;
+const theredoc = require('theredoc');
 
 const Recorder = require('../servirtiumRecorder');
 
@@ -96,7 +97,6 @@ describe('servertium recorder', ()=>{
     let recordPath;
     beforeEach( ()=> {
       recordPath = tmp.fileSync().name;
-      console.log({recordPath});
     });
 
     it('writes an interaction to a file', async ()=> {
@@ -108,12 +108,28 @@ describe('servertium recorder', ()=>{
 
       await http.get(
         '/200?foo=bar',
+        {
+          headers:{
+            'Accept': 'application/json'
+          }
+        }
       );
 
       const recorded = await fs.readFile(recordPath,{encoding:'UTF-8'});
 
-      const recordedLines = recorded.split('/n');
-      expect(recordedLines[0]).toBe('## Interaction 0: GET /200?foo=bar');
+      // TODO: request body, request headers, response headers, response status code
+      const expectedRecording = theredoc`
+        ## Interaction 0: GET /200?foo=bar
+
+        ### Response body recorded for playback
+
+        \`\`\`
+        {"code": 200, "description": "OK"}
+        \`\`\`
+
+      `;
+
+      expect(recorded).toBe(expectedRecording);
     });
   });
 });
