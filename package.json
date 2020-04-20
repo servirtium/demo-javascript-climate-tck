@@ -11,7 +11,8 @@
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
-    "jest": "^25.3.0"
+    "jest": "^25.3.0",
+    "tmp": "^0.1.0"
   },
   "jest": {
     "testEnvironment": "node"

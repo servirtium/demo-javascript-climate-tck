@@ -1,10 +1,13 @@
 const http = require('http');
-
+const createRecorder = require('./recorder');
 
 const HARDCODED_PORT = 61416; // TODO: use get-port or similar to dynamically generate the port
 
-async function start({backendUrl}){
+async function start({backendUrl,recordPath}){
+  const recorder = await createRecorder(recordPath);
+
   const mitmServer = await startMitmServer({
+    recorder,
     mitmPort:HARDCODED_PORT,
     ...parseBackendUrl(backendUrl)
   });
@@ -28,7 +31,7 @@ async function start({backendUrl}){
   }
 }
 
-function startMitmServer({mitmPort,backendPort,backendHost}){
+function startMitmServer({mitmPort,backendPort,backendHost,recorder}){
   const mitmServer = http.createServer((mitmReq, mitmRes) => {
 
     const url = new URL(mitmReq.url,'http://dummy');
@@ -54,6 +57,10 @@ function startMitmServer({mitmPort,backendPort,backendHost}){
     });
 
     backendReq.end();
+
+    const fullPath = [url.pathname,url.search,url.hash].join('');
+
+    recorder.recordInteraction({method:mitmReq.method,path:fullPath});
   });
 
 
