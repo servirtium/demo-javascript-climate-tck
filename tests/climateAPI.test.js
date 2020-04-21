@@ -11,6 +11,10 @@ describe("ClimateAPI", ()=>{
       await servirtium.start();
     });
 
+    afterEach(async ()=> {
+        // TODO pickup "last failure" from servirium's playback-er, if any.
+    });
+
     afterAll(async ()=> {
       await servirtium.stop();
     });
