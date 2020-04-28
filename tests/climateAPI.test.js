@@ -1,12 +1,15 @@
+const tmp = require('tmp');
+
 const ClimateAPI = require('../climateAPI');
 const servirtium = require('../servirtium_playback');
+const servirtiumRecorder = require('../servirtiumRecorder');
 
 describe("ClimateAPI", ()=>{
-  describe("live API", ()=>{
+  describe("in direct mode (no Sirvirtium)", ()=>{
     testClimateAPI(undefined);
   });
 
-  describe("virtualized API", ()=>{
+  describe("in playback mode", ()=>{
     beforeAll(async () => {
       await servirtium.start();
     });
@@ -16,6 +19,20 @@ describe("ClimateAPI", ()=>{
     });
 
     testClimateAPI("http://localhost:61417");
+  });
+
+  describe("in record mode", ()=> {
+    let recorder;
+    beforeEach( async ()=> {
+      const recordPath = tmp.fileSync().name;
+      recorder = await servirtiumRecorder.start({backendUrl:ClimateAPI.PRODUCTION_BASE_URL, recordPath});
+    });
+    afterEach(async ()=> {
+      await recorder.stop();
+    });
+
+    // FIXME: generate a proper tmp dir
+    testClimateAPI("http://localhost:61416");
   });
 });
 

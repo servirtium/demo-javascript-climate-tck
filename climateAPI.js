@@ -2,7 +2,6 @@ const http = require('axios');
 const xml2js = require('xml2js')
 
 class ClimateAPI {
-
   constructor(baseUrl = "http://climatedataapi.worldbank.org") {
     this.baseUrl = baseUrl;
   }
@@ -45,6 +44,8 @@ class ClimateAPI {
     return mean(annualDatas);
   }
 }
+ClimateAPI.PRODUCTION_BASE_URL="http://climatedataapi.worldbank.org";
+
 
 function mean(numbers){
   const sum = numbers.reduce( (sum,curr) => sum+curr );
