@@ -1,12 +1,15 @@
+const tmp = require('tmp');
+
 const ClimateAPI = require('../climateAPI');
 const servirtium = require('../servirtium_playback');
+const servirtiumRecorder = require('../servirtiumRecorder');
 
 describe("ClimateAPI", ()=>{
-  describe("live API", ()=>{
+  xdescribe("in direct mode (no Sirvirtium)", ()=>{
     testClimateAPI(undefined);
   });
 
-  describe("virtualized API", ()=>{
+  describe("in playback mode", ()=>{
     beforeAll(async () => {
       await servirtium.start();
     });
@@ -20,6 +23,26 @@ describe("ClimateAPI", ()=>{
     });
 
     testClimateAPI("http://localhost:61417");
+  });
+
+  describe("in record mode", ()=> {
+    let recorder;
+    beforeEach( async ()=> {
+    });
+    afterEach(async ()=> {
+      await recorder.stop();
+    });
+
+    test('average Rainfall For Great Britain From 1980 to 1999 Exists', async () => {
+      const climateAPI = new ClimateAPI("http://localhost:61416");
+      
+      const recordPath = './mocks/average_Rainfall_For_Great_Britain_From_1980_to_1999_Exists.mdd';
+      recorder = await servirtiumRecorder.start({backendUrl:ClimateAPI.PRODUCTION_BASE_URL, recordPath});
+
+      expect(await climateAPI.getAveAnnualRainfall(1980, 1999, "gbr")).toBeCloseTo(988.8454972331015);
+    });
+
+    //testClimateAPI("http://localhost:61416");
   });
 });
 
