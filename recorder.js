@@ -19,7 +19,9 @@ module.exports = async function createRecorder(recordPath){
   const file = await fs.open(recordPath,'w');
 
   function newInteraction(){
+    //TODO open append, here...
     return createInteraction(file);
+    file.close();
   }
 
   return {

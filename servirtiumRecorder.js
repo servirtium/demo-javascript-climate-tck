@@ -1,10 +1,19 @@
 const http = require('http');
+const fs = require('fs');
 
 const createRecorder = require('./recorder');
 
 const HARDCODED_PORT = 61416; // TODO: use get-port or similar to dynamically generate the port
 
 async function start({backendUrl,recordPath}){
+
+  let preexisting_markdown;
+
+  try {
+    preexisting_markdown = await fs.readFileSync(recordPath, 'utf8');
+  } catch (err) {
+    preexisting_markdown = "";
+  }
   const recorder = await createRecorder(recordPath);
 
   const mitmServer = await startMitmServer({
@@ -12,6 +21,19 @@ async function start({backendUrl,recordPath}){
     mitmPort:HARDCODED_PORT,
     ...parseBackendUrl(backendUrl)
   });
+
+  function testComplete() {
+
+    try {
+      new_markdown = fs.readFileSync(recordPath, 'utf8');
+      // this is only reading the first line.
+      console.log("n_m " + new_markdown);
+
+    } catch (err) {
+      new_markdown = "";
+    }
+    //TODO check that recorded markdown isn't different to markdown before recording (only if that preexisted)
+  }
 
   function stop(){
     return new Promise( (resolve,reject) => {
@@ -28,6 +50,7 @@ async function start({backendUrl,recordPath}){
   baseUrl = `http://localhost:${HARDCODED_PORT}`;
   return {
     baseUrl,
+    testComplete,
     stop
   }
 }
