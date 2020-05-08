@@ -22,8 +22,14 @@ async function start({backendUrl,recordPath}){
     ...parseBackendUrl(backendUrl)
   });
 
-  function testComplete() {
+  function sleep(ms){
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
 
+  async function testComplete() {
+    await sleep(20); //TODO not correct!!
     try {
       new_markdown = fs.readFileSync(recordPath, 'utf8');
       // this is only reading the first line.

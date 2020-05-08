@@ -30,7 +30,7 @@ describe("ClimateAPI", ()=>{
     beforeEach( async ()=> {
     });
     afterEach(async ()=> {
-      recorder.testComplete();
+      await recorder.testComplete();
     });
     afterAll(async ()=> {
       await recorder.stop();

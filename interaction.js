@@ -43,6 +43,7 @@ function createInteraction(file){
     await file.write('```\n');
     await file.write(responseTap.getContents());
     await file.write('\n```');
+    await file.sync();
   }
 
   return {

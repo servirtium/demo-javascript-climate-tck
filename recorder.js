@@ -21,7 +21,6 @@ module.exports = async function createRecorder(recordPath){
   function newInteraction(){
     //TODO open append, here...
     return createInteraction(file);
-    file.close();
   }
 
   return {
