@@ -33,12 +33,12 @@ async function start({backendUrl,recordPath}){
     try {
       new_markdown = fs.readFileSync(recordPath, 'utf8');
       // this is only reading the first line.
-      console.log("n_m " + new_markdown);
 
     } catch (err) {
       new_markdown = "";
     }
-    //TODO check that recorded markdown isn't different to markdown before recording (only if that preexisted)
+    //TODO Jest specific??
+    expect(new_markdown).toBe(preexisting_markdown);
   }
 
   function stop(){

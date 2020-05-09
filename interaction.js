@@ -2,13 +2,13 @@ const {WritableStreamBuffer} = require('stream-buffers');
 
 function createInteraction(file){
   const interactionNumber = 0; // FIXME
-  let requestMethod,requestPath,requestRawHeaders;
+  let requestMethod, requestPath, requestRawHeaders;
 
   const responseTap = new WritableStreamBuffer();
 
-  function recordRequestFrontMatter({method,url,rawHeaders}){
+  function recordRequestFrontMatter({method, url, rawHeaders}){
     requestMethod = method;
-    requestPath = [url.pathname,url.search,url.hash].join('');
+    requestPath = [url.pathname, url.search, url.hash].join('');
     requestRawHeaders = rawHeaders;
   }
 
@@ -37,12 +37,20 @@ function createInteraction(file){
     }
     await file.write('```\n\n');
 
+    await file.write('### Request body recorded for playback ():\n\n');
+    await file.write('```\n');
+    await file.write('```\n\n');
+
+    await file.write('### Response headers recorded for playback:\n\n');
+    await file.write('```\n');
+    //await file.write(headersFromSomewhere);
+    await file.write('```\n\n');
     // TODO: record response mimetype
     await file.write('### Response body recorded for playback\n\n');
 
     await file.write('```\n');
     await file.write(responseTap.getContents());
-    await file.write('\n```');
+    await file.write('\n```\n');
     await file.sync();
   }
 
