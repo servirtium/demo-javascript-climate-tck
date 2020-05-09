@@ -83,6 +83,7 @@ function startMitmServer({mitmPort,backendPort,backendHost,recorder}){
       {
         method: mitmReq.method,
         headers
+        //TODO req BODY
       },
       (backendRes)=> {
         mitmRes.writeHead(
@@ -91,6 +92,7 @@ function startMitmServer({mitmPort,backendPort,backendHost,recorder}){
           backendRes.headers
         );
         backendRes.pipe(mitmRes);
+        interaction.responseHeaders(backendRes.headers);
         interaction.tapResponseStream(backendRes);
     });
     backendReq.end();
