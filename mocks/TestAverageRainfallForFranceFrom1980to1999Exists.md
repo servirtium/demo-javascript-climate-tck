@@ -1,12 +1,11 @@
-## Interaction 0: GET /climateweb/rest/v1/country/annualavg/pr/1980/1999/gbr.xml
+## Interaction 0: GET/climateweb/rest/v1/country/annualavg/pr/1980/1999/fra.xml
 
 ### Request headers recorded for playback:
 
 ```
-Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+Accept-Encoding: gzip
 User-Agent: Servirtium-Testing
-Connection: keep-alive
-Host: climatedataapi.worldbank.org
+
 ```
 
 ### Request body recorded for playback ():
@@ -18,20 +17,26 @@ Host: climatedataapi.worldbank.org
 ### Response headers recorded for playback:
 
 ```
-Content-Type: application/xml
-Connection: keep-alive
-Set-Cookie: AWSALB=REPLACED-IN-RECORDING; Expires=Thu, 15 Jan 2099 11:11:11 GMT; Path=/
-Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: X-Requested-With
 Access-Control-Allow-Methods: GET
-Set-Cookie: TS01c35ec3=ONE-MORE-REPLACED-IN-RECORDING; Path=/
-Set-Cookie: climatedataapi.cookie=1234567899999; Path=/
-Set-Cookie: climatedataapi_ext.cookie=9876543211111; Path=/
-Set-Cookie: TS0137860d=ALSO-REPLACED-IN-RECORDING; Path=/
-Transfer-Encoding: chunked
+Access-Control-Allow-Origin: *
+Cache-Control: no-cache,no-store
+Connection: keep-alive
+Content-Security-Policy: default-src 'self'
+Content-Type: application/xml
+Date: Tue, 04 Aug 2020 16:53:25 GMT
+Httponly: true
+Pragma: no-cache
+Secure: true
+Set-Cookie: REPLACED-IN-RECORDING
+Strict-Transport-Security: max-age=0max-age=31536000; includeSubDomains
+X-Content-Type-Options: nosniffnosniff
+X-Frame-Options: DENYdeny
+X-Xss-Protection: 1; mode=block1; mode=block
+
 ```
 
-### Response body recorded for playback (200: application/xml):
+### Response body recorded for playback (200 :application/xml):
 
 ```
 <list>
@@ -41,7 +46,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>987.9504418944</double>
+      <double>1077.8620827419693</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -50,7 +55,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>815.2627636718801</double>
+      <double>745.3185434053028</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -59,7 +64,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1099.3898999037601</double>
+      <double>1063.867595326212</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -68,7 +73,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1021.6996069333198</double>
+      <double>1007.0295299183938</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -77,7 +82,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1019.8750146478401</double>
+      <double>1061.3426458178785</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -86,7 +91,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1084.5603759764</double>
+      <double>1004.4105613005454</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -95,7 +100,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1008.2985131833999</double>
+      <double>750.6408894859092</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -104,7 +109,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1194.9564575200002</double>
+      <double>967.5554180724546</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -113,7 +118,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>893.9680444336799</double>
+      <double>873.0839862248788</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -122,7 +127,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1032.85460449136</double>
+      <double>903.9068381571817</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -131,7 +136,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>905.9324633786798</double>
+      <double>911.8733705463638</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -140,7 +145,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1024.2805590819598</double>
+      <double>807.6978963218183</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -149,7 +154,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>784.5488305664002</double>
+      <double>643.4242285526061</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -158,7 +163,7 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>957.3522631840398</double>
+      <double>911.9471435543941</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -167,9 +172,8 @@ Transfer-Encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1001.7526196294</double>
+      <double>977.019703258182</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
 </list>
 ```
-

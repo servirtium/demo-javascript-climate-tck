@@ -1,12 +1,11 @@
-## Interaction 0: GET /climateweb/rest/v1/country/annualavg/pr/1980/1999/egy.xml
+## Interaction 0: GET/climateweb/rest/v1/country/annualavg/pr/1980/1999/egy.xml
 
 ### Request headers recorded for playback:
 
 ```
-Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+Accept-Encoding: gzip
 User-Agent: Servirtium-Testing
-Connection: keep-alive
-Host: climatedataapi.worldbank.org
+
 ```
 
 ### Request body recorded for playback ():
@@ -18,20 +17,26 @@ Host: climatedataapi.worldbank.org
 ### Response headers recorded for playback:
 
 ```
-Content-Type: application/xml
-Connection: keep-alive
-Set-Cookie: AWSALB=REPLACED-IN-RECORDING; Expires=Thu, 15 Jan 2099 11:11:11 GMT; Path=/
-Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: X-Requested-With
 Access-Control-Allow-Methods: GET
-Set-Cookie: TS01c35ec3=ONE-MORE-REPLACED-IN-RECORDING; Path=/
-Set-Cookie: climatedataapi.cookie=1234567899999; Path=/
-Set-Cookie: climatedataapi_ext.cookie=9876543211111; Path=/
-Set-Cookie: TS0137860d=ALSO-REPLACED-IN-RECORDING; Path=/
-Transfer-Encoding: chunked
+Access-Control-Allow-Origin: *
+Cache-Control: no-cache,no-store
+Connection: keep-alive
+Content-Security-Policy: default-src 'self'
+Content-Type: application/xml
+Date: Tue, 04 Aug 2020 16:53:25 GMT
+Httponly: true
+Pragma: no-cache
+Secure: true
+Set-Cookie: REPLACED-IN-RECORDING
+Strict-Transport-Security: max-age=0max-age=31536000; includeSubDomains
+X-Content-Type-Options: nosniffnosniff
+X-Frame-Options: DENYdeny
+X-Xss-Protection: 1; mode=block1; mode=block
+
 ```
 
-### Response body recorded for playback (200: application/xml):
+### Response body recorded for playback (200 :application/xml):
 
 ```
 <list>
@@ -172,4 +177,3 @@ Transfer-Encoding: chunked
   </domain.web.AnnualGcmDatum>
 </list>
 ```
-
