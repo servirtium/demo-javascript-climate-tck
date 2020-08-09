@@ -1,11 +1,15 @@
-## Interaction 0: GET/climateweb/rest/v1/country/annualavg/pr/1980/1999/egy.xml
-
+## Interaction 0: GET /climateweb/rest/v1/country/annualavg/pr/1980/1999/egy.xml
 ### Request headers recorded for playback:
 
 ```
-Accept-Encoding: gzip
-User-Agent: Servirtium-Testing
-
+connection: close
+accept-encoding: gzip, deflate
+host: climatedataapi.worldbank.org
+origin: http://localhost
+accept-language: en
+user-agent: Mozilla/5.0 (darwin) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/15.2.1
+referer: http://localhost/
+accept: application/json, text/plain, */*
 ```
 
 ### Request body recorded for playback ():
@@ -17,26 +21,26 @@ User-Agent: Servirtium-Testing
 ### Response headers recorded for playback:
 
 ```
-Access-Control-Allow-Headers: X-Requested-With
-Access-Control-Allow-Methods: GET
-Access-Control-Allow-Origin: *
-Cache-Control: no-cache,no-store
-Connection: keep-alive
-Content-Security-Policy: default-src 'self'
-Content-Type: application/xml
-Date: Tue, 04 Aug 2020 16:53:25 GMT
-Httponly: true
-Pragma: no-cache
-Secure: true
-Set-Cookie: REPLACED-IN-RECORDING
-Strict-Transport-Security: max-age=0max-age=31536000; includeSubDomains
-X-Content-Type-Options: nosniffnosniff
-X-Frame-Options: DENYdeny
-X-Xss-Protection: 1; mode=block1; mode=block
-
+date: Sun, 09 Aug 2020 18:41:40 GMT
+content-type: application/xml
+connection: close
+set-cookie: AWSALB=kjMpNlv+DsGiSOrNifW1LWocyfeNJl/4cCt4QlvUdnHxJelpUNwe4myKvh5BhxjMrJ0faa4n5OVjtTL4UrS0KlxobLcDaYGS1ajboN+NbaZiQ6IwCT02uBBEcJf4; Expires=Sun, 16 Aug 2020 18:41:40 GMT; Path=/,AWSALBCORS=kjMpNlv+DsGiSOrNifW1LWocyfeNJl/4cCt4QlvUdnHxJelpUNwe4myKvh5BhxjMrJ0faa4n5OVjtTL4UrS0KlxobLcDaYGS1ajboN+NbaZiQ6IwCT02uBBEcJf4; Expires=Sun, 16 Aug 2020 18:41:40 GMT; Path=/; SameSite=None; Secure,climatedata.cookie=1791010314.64288.0000; path=/; Httponly; Secure,TS01c35ec3=010f7a2ab0c82e2715798134ecb64b2f2aa1c73bbf9cf19b4a0d51934de125ff37f581be9c521d94cbd355889be7369c6752c3be59fae9d199acb8003daaa6a92c8c036ea5; Path=/,climatedataapi.cookie=299940106.33060.0000; path=/; Httponly,climatedataapi_ext.cookie=2543955978.20480.0000; path=/; Httponly,TS0137860d=017189f94712dc2b25e347b733c235eea618c1c1774256938cbfdbc7c21822b122501682b3ca98e418173aa192aafc4a6b74d5994157798346b69070405faa54228a73b2af0cdf8785ea231f521239f4637d2be05fadf7af9a9ca90b0af1f8fcc17bb1f2fd74e6bed608bed056504f6623e8df1619e78e9374a3a3bc257079d113e5e4844cd59b721be07b8b2ad8b842d11e31911e; Path=/
+strict-transport-security: max-age=0, max-age=31536000; includeSubDomains
+x-frame-options: DENY, deny
+x-content-type-options: nosniff, nosniff
+x-xss-protection: 1; mode=block, 1; mode=block
+access-control-allow-origin: *
+access-control-allow-headers: X-Requested-With
+access-control-allow-methods: GET
+content-security-policy: default-src 'self'
+cache-control: no-cache,no-store
+pragma: no-cache
+secure: true
+httponly: true
+transfer-encoding: chunked
 ```
 
-### Response body recorded for playback (200 :application/xml):
+### Response body recorded for playback (200: application/xml):
 
 ```
 <list>

@@ -22,9 +22,11 @@ class Servirtium {
   private testName: string
   private interactionSequence: number
   private requestHeaders: http.OutgoingHttpHeaders
+  private requestPath: string
   private requestMethod: string
   private requestBody: string
   private responseHeaders: http.IncomingHttpHeaders
+  private responseContentType: string
   private responseBody: string
   private responseStatus: number
   private recordContent: string
@@ -60,6 +62,7 @@ class Servirtium {
       onProxyReq: (proxyReq, request) => {
         // add custom header to request
         // proxyReq.setHeader('x-added', 'foobar');
+        this.requestPath = proxyReq.path
         this.requestHeaders = proxyReq.getHeaders()
         this.requestMethod = proxyReq.method
         this.requestBody = request.body
@@ -70,6 +73,7 @@ class Servirtium {
         // delete proxyRes.headers['x-removed']; // remove header from response
         this.responseHeaders = proxyRes.headers
         this.responseStatus = proxyRes.statusCode
+        this.responseContentType = proxyRes?.headers?.['content-type']
         let body = []
         proxyRes.on('data', (chunk) => {
           body.push(chunk);
@@ -100,17 +104,23 @@ class Servirtium {
     const destDir = path.resolve(process.cwd(), 'mocks')
     await fs.mkdirSync(destDir, { recursive: true })
     const fileDir = path.resolve(process.cwd(), 'mocks', `${this.testName}.md`)
-    console.log('writeRecord', this.recordContent)
     await fs.writeFileSync(fileDir, this.recordContent)
   }
 
   private _generateTemplate = async () => {
     const templatePath = path.resolve(__dirname, 'template.ejs')
     const ejsTemplate = await fs.readFileSync(templatePath, { encoding: 'utf8' })
-    const template = ejs.compile(ejsTemplate)
+    const template = ejs.compile(ejsTemplate, {
+      escape: (markup) => {
+        return markup
+      }
+    })
     const tmpl = template({
+      interactionSequence: this.interactionSequence,
+      requestPath: this.requestPath,
       requestMethod: this.requestMethod,
       responseStatus: this.responseStatus,
+      responseContentType: this.responseContentType,
       requestHeaders: this.requestHeaders,
       requestBody: this.requestBody,
       responseHeaders: this.responseHeaders,
@@ -121,7 +131,6 @@ class Servirtium {
     } else {
       this.recordContent = `${this.recordContent}\n\n${tmpl}`
     }
-    console.log('_generateTemplate', this.recordContent)
     this.interactionSequence += 1
   }
 
