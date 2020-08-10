@@ -17,6 +17,7 @@ export interface IServirtium {
   deleteResponseHeaders(headers: string[])
   replaceRequestHeaders(headers: http.OutgoingHttpHeaders)
   replaceResponseHeaders(headers: http.IncomingHttpHeaders)
+  replaceContentByRegex(values: { [key: string]: string })
 }
 
 class Servirtium {
