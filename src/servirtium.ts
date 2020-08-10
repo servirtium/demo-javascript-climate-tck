@@ -13,6 +13,10 @@ export interface IServirtium {
   startRecord(callback?: (err?: Error) => void)
   endRecord(callback?: (err?: Error) => void)
   writeRecord()
+  deleteRequestHeaders(headers: string[])
+  deleteResponseHeaders(headers: string[])
+  replaceRequestHeaders(headers: http.OutgoingHttpHeaders)
+  replaceResponseHeaders(headers: http.IncomingHttpHeaders)
 }
 
 class Servirtium {
@@ -30,9 +34,18 @@ class Servirtium {
   private responseBody: string
   private responseStatus: number
   private recordContent: string
+  private requestHeadersDelete: string[]
+  private responseHeadersDelete: string[]
+  private requestHeadersReplace: http.OutgoingHttpHeaders
+  private responseHeadersReplace: http.IncomingHttpHeaders
+  private regexToReplaceContent: {[regex: string]: string}
 
   constructor(apiUrl?: string) {
     this.apiUrl = apiUrl
+    this.requestHeadersDelete = []
+    this.responseHeadersDelete = []
+    this.requestHeadersReplace = {}
+    this.responseHeadersReplace = {}
   }
 
   public setTestName = (testName: string) => {
@@ -48,10 +61,38 @@ class Servirtium {
     this.serverPlayback = app.listen(61417, callback)
   }
 
+  public deleteRequestHeaders = (headers: string[]) => {
+    this.requestHeadersDelete = headers
+  }
+
+  public deleteResponseHeaders = (headers: string[]) => {
+    this.responseHeadersDelete = headers
+  }
+
+  public replaceRequestHeaders = (headers: http.OutgoingHttpHeaders) => {
+    this.requestHeadersReplace = headers
+  }
+
+  public replaceResponseHeaders = (headers: http.IncomingHttpHeaders) => {
+    this.responseHeadersReplace = headers
+  }
+
   public endPlayback = (callback?: (err?: Error) => void) => {
     this.serverPlayback.close(callback)
   }
 
+  public replaceContentByRegex = (values: { [key: string]: string }) => {
+    this.regexToReplaceContent = values
+  }
+
+  private _replaceContent = (content: string): string => {
+    let finalContent = content
+    Object.keys(this.regexToReplaceContent).forEach(item => {
+      const regex = new RegExp(item)
+      finalContent = finalContent.replace(regex, this.regexToReplaceContent[item])
+    })
+    return finalContent
+  }
 
   public startRecord = (callback?: (err?: Error) => void) => {
     const app = express()
@@ -60,17 +101,24 @@ class Servirtium {
       target: this.apiUrl,
       changeOrigin: true,
       onProxyReq: (proxyReq, request) => {
-        // add custom header to request
-        // proxyReq.setHeader('x-added', 'foobar');
+        this.requestHeadersDelete?.forEach((item) => {
+          proxyReq.removeHeader(item)
+        })
+        Object.keys(this.requestHeadersReplace).forEach((item) => {
+          proxyReq.setHeader(item, this.requestHeadersReplace[item])
+        })
         this.requestPath = proxyReq.path
         this.requestHeaders = proxyReq.getHeaders()
         this.requestMethod = proxyReq.method
         this.requestBody = request.body
       },
       onProxyRes: async (proxyRes) => {
-        // modify header before send
-        // proxyRes.headers['x-added'] = 'foobar'; // add new header to response
-        // delete proxyRes.headers['x-removed']; // remove header from response
+        this.responseHeadersDelete.forEach((item) => {
+          delete proxyRes.headers[item]
+        })
+        Object.keys(this.responseHeadersReplace).forEach((item) => {
+          proxyRes.headers[item] = this.responseHeadersReplace[item]
+        })
         this.responseHeaders = proxyRes.headers
         this.responseStatus = proxyRes.statusCode
         this.responseContentType = proxyRes?.headers?.['content-type']
@@ -78,11 +126,12 @@ class Servirtium {
         proxyRes.on('data', (chunk) => {
           body.push(chunk);
         })
-        proxyRes.on('end', () => {
-          const finalBody = Buffer.concat(body).toString()
-          this.responseBody = finalBody
+        proxyRes.on('end', async () => {
+          let content = Buffer.concat(body).toString()
+          const finalContent = this._replaceContent(content)
+          this.responseBody = finalContent
+          await this._generateTemplate()
         })
-        await this._generateTemplate()
       },
       onError: (err, req, res) => {
         res.writeHead(500, {
