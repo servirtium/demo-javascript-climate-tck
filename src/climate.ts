@@ -65,7 +65,6 @@ class ClimateAPI {
         throw `date range ${fromCCYY}-${toCCYY} not supported`
       }
       const aveAnualRainfall = this._calculateAveAnual(result, totalDatum)
-      console.log({ aveAnualRainfall })
       return aveAnualRainfall
     } catch (error) {
       throw error
