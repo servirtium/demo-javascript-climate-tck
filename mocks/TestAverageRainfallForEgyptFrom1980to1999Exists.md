@@ -7,7 +7,7 @@ accept-encoding: gzip, deflate
 host: climatedataapi.worldbank.org
 origin: http://localhost
 accept-language: en
-user-agent: Mozilla/5.0 (darwin) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/15.2.1
+user-agent: Servirtium-Agent
 referer: http://localhost/
 accept: application/json, text/plain, */*
 ```
@@ -21,10 +21,10 @@ accept: application/json, text/plain, */*
 ### Response headers recorded for playback:
 
 ```
-date: Sun, 09 Aug 2020 18:41:40 GMT
+date: Sun, 09 Aug 2020 18:42:45 GMT
 content-type: application/xml
 connection: close
-set-cookie: AWSALB=kjMpNlv+DsGiSOrNifW1LWocyfeNJl/4cCt4QlvUdnHxJelpUNwe4myKvh5BhxjMrJ0faa4n5OVjtTL4UrS0KlxobLcDaYGS1ajboN+NbaZiQ6IwCT02uBBEcJf4; Expires=Sun, 16 Aug 2020 18:41:40 GMT; Path=/,AWSALBCORS=kjMpNlv+DsGiSOrNifW1LWocyfeNJl/4cCt4QlvUdnHxJelpUNwe4myKvh5BhxjMrJ0faa4n5OVjtTL4UrS0KlxobLcDaYGS1ajboN+NbaZiQ6IwCT02uBBEcJf4; Expires=Sun, 16 Aug 2020 18:41:40 GMT; Path=/; SameSite=None; Secure,climatedata.cookie=1791010314.64288.0000; path=/; Httponly; Secure,TS01c35ec3=010f7a2ab0c82e2715798134ecb64b2f2aa1c73bbf9cf19b4a0d51934de125ff37f581be9c521d94cbd355889be7369c6752c3be59fae9d199acb8003daaa6a92c8c036ea5; Path=/,climatedataapi.cookie=299940106.33060.0000; path=/; Httponly,climatedataapi_ext.cookie=2543955978.20480.0000; path=/; Httponly,TS0137860d=017189f94712dc2b25e347b733c235eea618c1c1774256938cbfdbc7c21822b122501682b3ca98e418173aa192aafc4a6b74d5994157798346b69070405faa54228a73b2af0cdf8785ea231f521239f4637d2be05fadf7af9a9ca90b0af1f8fcc17bb1f2fd74e6bed608bed056504f6623e8df1619e78e9374a3a3bc257079d113e5e4844cd59b721be07b8b2ad8b842d11e31911e; Path=/
+set-cookie: MASKED
 strict-transport-security: max-age=0, max-age=31536000; includeSubDomains
 x-frame-options: DENY, deny
 x-content-type-options: nosniff, nosniff
@@ -50,7 +50,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>86.9453507501108</double>
+      <double>1077.8620827419693</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -59,7 +59,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>88.30762904406757</double>
+      <double>745.3185434053028</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -68,7 +68,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>106.36732833443784</double>
+      <double>1063.867595326212</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -77,7 +77,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>28.62417012292162</double>
+      <double>1007.0295299183938</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -86,7 +86,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>45.26438762045865</double>
+      <double>1061.3426458178785</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -95,7 +95,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>26.459523922684326</double>
+      <double>1004.4105613005454</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -104,7 +104,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>26.899282784094865</double>
+      <double>750.6408894859092</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -113,7 +113,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>46.921809016059456</double>
+      <double>967.5554180724546</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -122,7 +122,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>21.791464905471624</double>
+      <double>873.0839862248788</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -131,7 +131,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>78.83864541954053</double>
+      <double>903.9068381571817</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -140,7 +140,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>75.66823740260838</double>
+      <double>911.8733705463638</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -149,7 +149,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>31.494514729511625</double>
+      <double>807.6978963218183</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -158,7 +158,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>35.64848946636978</double>
+      <double>643.4242285526061</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -167,7 +167,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>56.096262184318924</double>
+      <double>911.9471435543941</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -176,7 +176,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>63.461061116817845</double>
+      <double>977.019703258182</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
 </list>

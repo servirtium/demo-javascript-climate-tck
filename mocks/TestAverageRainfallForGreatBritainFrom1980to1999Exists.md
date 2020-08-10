@@ -7,7 +7,7 @@ accept-encoding: gzip, deflate
 host: climatedataapi.worldbank.org
 origin: http://localhost
 accept-language: en
-user-agent: Mozilla/5.0 (darwin) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/15.2.1
+user-agent: Servirtium-Agent
 referer: http://localhost/
 accept: application/json, text/plain, */*
 ```
@@ -21,10 +21,10 @@ accept: application/json, text/plain, */*
 ### Response headers recorded for playback:
 
 ```
-date: Sun, 09 Aug 2020 18:41:39 GMT
+date: Sun, 09 Aug 2020 18:42:45 GMT
 content-type: application/xml
 connection: close
-set-cookie: AWSALB=giBWwxGqiGoSygdx/rd5U+NQPgweEQQnNs5r/tjsOgHCSSd5dvb6WZP6fYO78T5UKUIN4Z2LGb+chZZbCMLGqjVCkUdZ/2kiDx42A7dP6o696eS0ReNNe6/zt/dd; Expires=Sun, 16 Aug 2020 18:41:39 GMT; Path=/,AWSALBCORS=giBWwxGqiGoSygdx/rd5U+NQPgweEQQnNs5r/tjsOgHCSSd5dvb6WZP6fYO78T5UKUIN4Z2LGb+chZZbCMLGqjVCkUdZ/2kiDx42A7dP6o696eS0ReNNe6/zt/dd; Expires=Sun, 16 Aug 2020 18:41:39 GMT; Path=/; SameSite=None; Secure,TS01c35ec3=010f7a2ab08dfc0e277fc1eeae15171af3242799e2af07ed5b8b5a1ceba2e43bc6853da630cc5b0ce5292da2d0f1258cbc47467042; Path=/,climatedataapi.cookie=2615193866.33060.0000; path=/; Httponly,climatedataapi_ext.cookie=2543955978.20480.0000; path=/; Httponly,TS0137860d=017189f9473f598cb34046b264a85f0dc3fb6a1bfbd152e37e0f30f11336b40c36f3bd21139eaea409abd477c5c0e89cbd4f2946fb9d223063a5ee7043cd17b28bc0fa299897db651e4a07c36522685ecdf04853c30646e389993573371edff512c0d995ec317ded6dea430b3a202db27fe5e86484758d80c3045e37698e1d112ca63c1fa5; Path=/
+set-cookie: MASKED
 strict-transport-security: max-age=0, max-age=31536000; includeSubDomains
 x-frame-options: DENY, deny
 x-content-type-options: nosniff, nosniff

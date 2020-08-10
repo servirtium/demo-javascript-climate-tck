@@ -13,6 +13,10 @@ export interface IServirtium {
   startRecord(callback?: (err?: Error) => void)
   endRecord(callback?: (err?: Error) => void)
   writeRecord()
+  deleteRequestHeaders(headers: string[])
+  deleteResponseHeaders(headers: string[])
+  replaceRequestHeaders(headers: http.OutgoingHttpHeaders)
+  replaceResponseHeaders(headers: http.IncomingHttpHeaders)
 }
 
 class Servirtium {
@@ -30,9 +34,17 @@ class Servirtium {
   private responseBody: string
   private responseStatus: number
   private recordContent: string
+  private requestHeadersDelete: string[]
+  private responseHeadersDelete: string[]
+  private requestHeadersReplace: http.OutgoingHttpHeaders
+  private responseHeadersReplace: http.IncomingHttpHeaders
 
   constructor(apiUrl?: string) {
     this.apiUrl = apiUrl
+    this.requestHeadersDelete = []
+    this.responseHeadersDelete = []
+    this.requestHeadersReplace = {}
+    this.responseHeadersReplace = {}
   }
 
   public setTestName = (testName: string) => {
@@ -48,6 +60,22 @@ class Servirtium {
     this.serverPlayback = app.listen(61417, callback)
   }
 
+  public deleteRequestHeaders = (headers: string[]) => {
+    this.requestHeadersDelete = headers
+  }
+
+  public deleteResponseHeaders = (headers: string[]) => {
+    this.responseHeadersDelete = headers
+  }
+
+  public replaceRequestHeaders = (headers: http.OutgoingHttpHeaders) => {
+    this.requestHeadersReplace = headers
+  }
+
+  public replaceResponseHeaders = (headers: http.IncomingHttpHeaders) => {
+    this.responseHeadersReplace = headers
+  }
+
   public endPlayback = (callback?: (err?: Error) => void) => {
     this.serverPlayback.close(callback)
   }
@@ -60,17 +88,24 @@ class Servirtium {
       target: this.apiUrl,
       changeOrigin: true,
       onProxyReq: (proxyReq, request) => {
-        // add custom header to request
-        // proxyReq.setHeader('x-added', 'foobar');
+        this.requestHeadersDelete?.forEach((item) => {
+          proxyReq.removeHeader(item)
+        })
+        Object.keys(this.requestHeadersReplace).forEach((item) => {
+          proxyReq.setHeader(item, this.requestHeadersReplace[item])
+        })
         this.requestPath = proxyReq.path
         this.requestHeaders = proxyReq.getHeaders()
         this.requestMethod = proxyReq.method
         this.requestBody = request.body
       },
       onProxyRes: async (proxyRes) => {
-        // modify header before send
-        // proxyRes.headers['x-added'] = 'foobar'; // add new header to response
-        // delete proxyRes.headers['x-removed']; // remove header from response
+        this.responseHeadersDelete.forEach((item) => {
+          delete proxyRes.headers[item]
+        })
+        Object.keys(this.responseHeadersReplace).forEach((item) => {
+          proxyRes.headers[item] = this.responseHeadersReplace[item]
+        })
         this.responseHeaders = proxyRes.headers
         this.responseStatus = proxyRes.statusCode
         this.responseContentType = proxyRes?.headers?.['content-type']
@@ -160,8 +195,8 @@ class Servirtium {
     const RESPONSE_INDEX = 1
     const bodyRegex = /`+\n+### Response body recorded for playback \([a-zA-Z0-9\s:/)]+\n+`+/g
     const responseSplited = contentSplited?.[RESPONSE_INDEX]?.split(bodyRegex)
-    const unuseCharRegex = /(`+|\n+)/g
-    const responseBody = responseSplited?.[1]?.replace(unuseCharRegex, '')
+    // const unuseCharRegex = /(`+|\n+)/g
+    const responseBody = responseSplited?.[1]?.replace('```\n', '')
     const headers = this._parseHeaders(responseSplited?.[0])
     return { body: responseBody, headers }
   }
@@ -178,6 +213,7 @@ class Servirtium {
       res.writeHead(200)
       res.end(body)
     } catch (error) {
+      console.log({ error })
       res.writeHead(500)
       res.end('Internal Server Error')
     }
