@@ -66,7 +66,7 @@ describe('climateAPI playback', () => {
       const result = await climateApiClient.getAveAnnualRainfall(1980, 1999, 'mde')
       expect(result).toEqual(output)
     } catch (error) {
-      expect(error.trim()).toEqual('Invalid country code. Three letters are required')
+      expect(error).toEqual('Invalid country code. Three letters are required')
     }
   })
 })

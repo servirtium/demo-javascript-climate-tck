@@ -50,7 +50,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1077.8620827419693</double>
+      <double>86.9453507501108</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -59,7 +59,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>745.3185434053028</double>
+      <double>88.30762904406757</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -68,7 +68,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1063.867595326212</double>
+      <double>106.36732833443784</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -77,7 +77,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1007.0295299183938</double>
+      <double>28.62417012292162</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -86,7 +86,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1061.3426458178785</double>
+      <double>45.26438762045865</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -95,7 +95,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>1004.4105613005454</double>
+      <double>26.459523922684326</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -104,7 +104,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>750.6408894859092</double>
+      <double>26.899282784094865</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -113,7 +113,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>967.5554180724546</double>
+      <double>46.921809016059456</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -122,7 +122,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>873.0839862248788</double>
+      <double>21.791464905471624</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -131,7 +131,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>903.9068381571817</double>
+      <double>78.83864541954053</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -140,7 +140,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>911.8733705463638</double>
+      <double>75.66823740260838</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -149,7 +149,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>807.6978963218183</double>
+      <double>31.494514729511625</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -158,7 +158,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>643.4242285526061</double>
+      <double>35.64848946636978</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -167,7 +167,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>911.9471435543941</double>
+      <double>56.096262184318924</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
   <domain.web.AnnualGcmDatum>
@@ -176,7 +176,7 @@ transfer-encoding: chunked
     <fromYear>1980</fromYear>
     <toYear>1999</toYear>
     <annualData>
-      <double>977.019703258182</double>
+      <double>63.461061116817845</double>
     </annualData>
   </domain.web.AnnualGcmDatum>
 </list>

@@ -38,6 +38,7 @@ class Servirtium {
   private responseHeadersDelete: string[]
   private requestHeadersReplace: http.OutgoingHttpHeaders
   private responseHeadersReplace: http.IncomingHttpHeaders
+  private regexToReplaceContent: {[regex: string]: string}
 
   constructor(apiUrl?: string) {
     this.apiUrl = apiUrl
@@ -80,6 +81,18 @@ class Servirtium {
     this.serverPlayback.close(callback)
   }
 
+  public replaceContentByRegex = (values: { [key: string]: string }) => {
+    this.regexToReplaceContent = values
+  }
+
+  private _replaceContent = (content: string): string => {
+    let finalContent = content
+    Object.keys(this.regexToReplaceContent).forEach(item => {
+      const regex = new RegExp(item)
+      finalContent = finalContent.replace(regex, this.regexToReplaceContent[item])
+    })
+    return finalContent
+  }
 
   public startRecord = (callback?: (err?: Error) => void) => {
     const app = express()
@@ -113,11 +126,12 @@ class Servirtium {
         proxyRes.on('data', (chunk) => {
           body.push(chunk);
         })
-        proxyRes.on('end', () => {
-          const finalBody = Buffer.concat(body).toString()
-          this.responseBody = finalBody
+        proxyRes.on('end', async () => {
+          let content = Buffer.concat(body).toString()
+          const finalContent = this._replaceContent(content)
+          this.responseBody = finalContent
+          await this._generateTemplate()
         })
-        await this._generateTemplate()
       },
       onError: (err, req, res) => {
         res.writeHead(500, {
@@ -195,8 +209,8 @@ class Servirtium {
     const RESPONSE_INDEX = 1
     const bodyRegex = /`+\n+### Response body recorded for playback \([a-zA-Z0-9\s:/)]+\n+`+/g
     const responseSplited = contentSplited?.[RESPONSE_INDEX]?.split(bodyRegex)
-    // const unuseCharRegex = /(`+|\n+)/g
-    const responseBody = responseSplited?.[1]?.replace('```\n', '')
+    const unuseCharRegex = /(`+|\n+)/g
+    const responseBody = responseSplited?.[1]?.replace(unuseCharRegex, '')
     const headers = this._parseHeaders(responseSplited?.[0])
     return { body: responseBody, headers }
   }
@@ -213,7 +227,6 @@ class Servirtium {
       res.writeHead(200)
       res.end(body)
     } catch (error) {
-      console.log({ error })
       res.writeHead(500)
       res.end('Internal Server Error')
     }
