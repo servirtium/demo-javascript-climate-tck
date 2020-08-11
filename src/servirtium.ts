@@ -236,6 +236,7 @@ class Servirtium {
       Object.keys(headers)?.forEach((item: string) => {
         res.setHeader(item, headers[item])
       })
+      this.interactionSequence += 1
       res.writeHead(200)
       res.end(body)
     } catch (error) {
