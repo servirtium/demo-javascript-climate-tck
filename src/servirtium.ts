@@ -88,10 +88,12 @@ class Servirtium {
 
   private _replaceContent = (content: string): string => {
     let finalContent = content
-    Object.keys(this.regexToReplaceContent).forEach(item => {
-      const regex = new RegExp(item)
-      finalContent = finalContent.replace(regex, this.regexToReplaceContent[item])
-    })
+    if (this.regexToReplaceContent) {
+      Object.keys(this.regexToReplaceContent).forEach(item => {
+        const regex = new RegExp(item)
+        finalContent = finalContent.replace(regex, this.regexToReplaceContent[item])
+      })
+    }
     return finalContent
   }
 
