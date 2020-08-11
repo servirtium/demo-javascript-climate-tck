@@ -18,6 +18,7 @@ export interface IServirtium {
   replaceRequestHeaders(headers: http.OutgoingHttpHeaders)
   replaceResponseHeaders(headers: http.IncomingHttpHeaders)
   replaceContentByRegex(values: { [key: string]: string })
+  checkMarkdownIsDifferentToPreviousRecording(): boolean
 }
 
 class Servirtium {
@@ -47,6 +48,8 @@ class Servirtium {
     this.responseHeadersDelete = []
     this.requestHeadersReplace = {}
     this.responseHeadersReplace = {}
+    this.interactionSequence = 0
+    this.recordContent = ''
   }
 
   public setTestName = (testName: string) => {
@@ -97,51 +100,57 @@ class Servirtium {
     return finalContent
   }
 
-  public startRecord = (callback?: (err?: Error) => void) => {
+  private _onProxyReq = (proxyReq, request) => {
+    this.requestHeadersDelete?.forEach((item) => {
+      proxyReq.removeHeader(item)
+    })
+    Object.keys(this.requestHeadersReplace).forEach((item) => {
+      proxyReq.setHeader(item, this.requestHeadersReplace[item])
+    })
+    this.requestPath = proxyReq.path
+    this.requestHeaders = proxyReq.getHeaders()
+    this.requestMethod = proxyReq.method
+    this.requestBody = request.body
+  }
+
+  private _onProxyRes = async (proxyRes) => {
+    this.responseHeadersDelete.forEach((item) => {
+      delete proxyRes.headers[item]
+    })
+    Object.keys(this.responseHeadersReplace).forEach((item) => {
+      proxyRes.headers[item] = this.responseHeadersReplace[item]
+    })
+    this.responseHeaders = proxyRes.headers
+    this.responseStatus = proxyRes.statusCode
+    this.responseContentType = proxyRes?.headers?.['content-type']
+    let body = []
+    proxyRes.on('data', (chunk) => {
+      body.push(chunk);
+    })
+    proxyRes.on('end', async () => {
+      let content = Buffer.concat(body).toString()
+      const finalContent = this._replaceContent(content)
+      this.responseBody = finalContent
+      await this._generateTemplate()
+    })
+  }
+
+  private _onError =( err, req, res) => {
+    res.writeHead(500, {
+      'Content-Type': 'text/plain',
+    });
+    res.end('Something went wrong. And we are reporting a custom error message.');
+  }
+
+  public startRecord  = (callback?: (err?: Error) => void) => {
     const app = express()
     app.use(cors({ origin: true }))
     const options = {
       target: this.apiUrl,
       changeOrigin: true,
-      onProxyReq: (proxyReq, request) => {
-        this.requestHeadersDelete?.forEach((item) => {
-          proxyReq.removeHeader(item)
-        })
-        Object.keys(this.requestHeadersReplace).forEach((item) => {
-          proxyReq.setHeader(item, this.requestHeadersReplace[item])
-        })
-        this.requestPath = proxyReq.path
-        this.requestHeaders = proxyReq.getHeaders()
-        this.requestMethod = proxyReq.method
-        this.requestBody = request.body
-      },
-      onProxyRes: async (proxyRes) => {
-        this.responseHeadersDelete.forEach((item) => {
-          delete proxyRes.headers[item]
-        })
-        Object.keys(this.responseHeadersReplace).forEach((item) => {
-          proxyRes.headers[item] = this.responseHeadersReplace[item]
-        })
-        this.responseHeaders = proxyRes.headers
-        this.responseStatus = proxyRes.statusCode
-        this.responseContentType = proxyRes?.headers?.['content-type']
-        let body = []
-        proxyRes.on('data', (chunk) => {
-          body.push(chunk);
-        })
-        proxyRes.on('end', async () => {
-          let content = Buffer.concat(body).toString()
-          const finalContent = this._replaceContent(content)
-          this.responseBody = finalContent
-          await this._generateTemplate()
-        })
-      },
-      onError: (err, req, res) => {
-        res.writeHead(500, {
-          'Content-Type': 'text/plain',
-        });
-        res.end('Something went wrong. And we are reporting a custom error message.');
-      },
+      onProxyReq: this._onProxyReq,
+      onProxyRes: this._onProxyRes,
+      onError: this._onError,
     } as Options
 
     app.use('/', createProxyMiddleware(options))
@@ -232,6 +241,17 @@ class Servirtium {
     } catch (error) {
       res.writeHead(500)
       res.end('Internal Server Error')
+    }
+  }
+
+  public checkMarkdownIsDifferentToPreviousRecording = async () => {
+    try {
+      const fileDir = path.resolve(process.cwd(), 'mocks', `${this.testName}.md`)
+      const markdownContent = await fs.readFileSync(fileDir, { encoding: 'utf8' })
+      const newContent = this._replaceContent(this.recordContent)
+      return newContent === markdownContent
+    } catch(err) {
+      return true
     }
   }
 }
