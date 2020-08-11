@@ -18,7 +18,7 @@ export interface IServirtium {
   replaceRequestHeaders(headers: http.OutgoingHttpHeaders)
   replaceResponseHeaders(headers: http.IncomingHttpHeaders)
   replaceContentByRegex(values: { [key: string]: string })
-  checkMarkdownIsDifferentToPreviousRecording(): boolean
+  checkMarkdownIsDifferentToPreviousRecording(): Promise<boolean>
 }
 
 class Servirtium {
@@ -244,7 +244,7 @@ class Servirtium {
     }
   }
 
-  public checkMarkdownIsDifferentToPreviousRecording = async () => {
+  public checkMarkdownIsDifferentToPreviousRecording = async (): Promise<boolean> => {
     try {
       const fileDir = path.resolve(process.cwd(), 'mocks', `${this.testName}.md`)
       const markdownContent = await fs.readFileSync(fileDir, { encoding: 'utf8' })

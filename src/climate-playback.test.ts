@@ -69,4 +69,17 @@ describe('climateAPI playback', () => {
       expect(error).toEqual('Invalid country code. Three letters are required')
     }
   })
+
+  it('TestAverageRainfallForGreatBritainAndFranceFrom1980to1999Exists', async () => {
+    try {
+      const output = '988.84549723310131333'
+      const result = await climateApiClient.getAveAnnualRainfall(1980, 1999, "gbr")
+      expect(result).toEqual(output)
+      const output1 = '913.79869551227269333'
+      const result1 = await climateApiClient.getAveAnnualRainfall(1980, 1999, "fra")
+      expect(result1).toEqual(output1)
+    } catch (error) {
+      expect(error).toBeUndefined()
+    }
+  })
 })
