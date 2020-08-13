@@ -1,5 +1,5 @@
 import ClimateAPI, { IClimateAPI } from './climate'
-import Servirtium, { IServirtium } from './servirtium'
+import Servirtium, { IServirtium } from '@servirtium/recorder'
 
 describe('climateAPI playback', () => {
   let climateApiClient: IClimateAPI
