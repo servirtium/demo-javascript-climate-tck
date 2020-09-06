@@ -8,8 +8,8 @@ describe('climateAPI record', () => {
   beforeAll((done) => {
     climateApiClient = new ClimateAPI('http://localhost:61417')
     servirtium = new Servirtium('http://climatedataapi.worldbank.org')
-    servirtium.replaceRequestHeaders({ "user-agent": "Servirtium-Agent" })
-    servirtium.replaceResponseHeaders({ "set-cookie": ["MASKED"], "date": "Sun, 09 Aug 2020 18:42:45 GMT", })
+    servirtium.addCallerRequestHeadersReplacement({ "user-agent": "Servirtium-Agent" })
+    servirtium.addRecordResponseHeadersReplacement({ "set-cookie": ["MASKED"], "date": "Sun, 09 Aug 2020 18:42:45 GMT", })
     servirtium.startRecord(() => {
       done()
     })
