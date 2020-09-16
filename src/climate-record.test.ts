@@ -1,5 +1,5 @@
 import ClimateAPI, { IClimateAPI } from './climate'
-import Servirtium, { IServirtium } from '@servirtium/recorder'
+import Servirtium, { IServirtium } from './servirtium'
 
 describe('climateAPI record', () => {
   let climateApiClient: IClimateAPI
@@ -8,8 +8,8 @@ describe('climateAPI record', () => {
   beforeAll((done) => {
     climateApiClient = new ClimateAPI('http://localhost:61417')
     servirtium = new Servirtium('http://climatedataapi.worldbank.org')
-    servirtium.addCallerRequestHeadersReplacement({ "user-agent": "Servirtium-Agent" })
-    servirtium.addRecordResponseHeadersReplacement({ "set-cookie": ["MASKED"], "date": "Sun, 09 Aug 2020 18:42:45 GMT", })
+    servirtium.setCallerRequestHeaderReplacements({ "user-agent: (.*)": "user-agent: Servirtium-Agent" })
+    servirtium.setRecordResponseHeaderReplacements({ "set-cookie: (.*)": "set-cookie: MASKED", "date: (.*)": "date: Sun, 09 Aug 2020 18:42:45 GMT" })
     servirtium.startRecord(() => {
       done()
     })

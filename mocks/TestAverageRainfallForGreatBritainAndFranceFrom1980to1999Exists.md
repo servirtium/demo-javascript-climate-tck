@@ -25,14 +25,14 @@ date: Sun, 09 Aug 2020 18:42:45 GMT
 content-type: application/xml
 connection: close
 set-cookie: MASKED
-strict-transport-security: max-age=0, max-age=31536000; includeSubDomains
-x-frame-options: DENY, deny
-x-content-type-options: nosniff, nosniff
-x-xss-protection: 1; mode=block, 1; mode=block
 access-control-allow-origin: *
 access-control-allow-headers: X-Requested-With
 access-control-allow-methods: GET
+strict-transport-security: max-age=31536000; includeSubDomains
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
 content-security-policy: default-src 'self'
+x-frame-options: deny
 cache-control: no-cache,no-store
 pragma: no-cache
 secure: true
@@ -210,14 +210,14 @@ date: Sun, 09 Aug 2020 18:42:45 GMT
 content-type: application/xml
 connection: close
 set-cookie: MASKED
-strict-transport-security: max-age=0, max-age=31536000; includeSubDomains
-x-frame-options: DENY, deny
-x-content-type-options: nosniff, nosniff
-x-xss-protection: 1; mode=block, 1; mode=block
 access-control-allow-origin: *
 access-control-allow-headers: X-Requested-With
 access-control-allow-methods: GET
+strict-transport-security: max-age=31536000; includeSubDomains
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
 content-security-policy: default-src 'self'
+x-frame-options: deny
 cache-control: no-cache,no-store
 pragma: no-cache
 secure: true

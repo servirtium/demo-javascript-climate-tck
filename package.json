@@ -9,7 +9,7 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "@servirtium/recorder": "^0.1.11-rc",
+    "@servirtium/recorder": "^0.1.11",
     "@types/ejs": "^3.0.4",
     "axios": "^0.19.2",
     "cors": "^2.8.5",
