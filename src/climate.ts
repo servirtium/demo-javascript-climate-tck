@@ -26,7 +26,7 @@ export type ClimateResult = {
 
 class ClimateAPI {
   private _baseUrl: string
-  constructor(baseUrl = 'http://climatedataapi.worldbank.org') {
+  constructor(baseUrl = 'http://localhost:4567') {
     this._baseUrl = baseUrl
   }
 

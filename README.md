@@ -1,3 +1,6 @@
+Note - TheWorkdBank took down their climate WebAPI. Darn it. We now depend on a docker version of the same until we work out what to do long term.
+Docker build and deploy this locally - https://github.com/servirtium/worldbank-climate-recordings - see README
+
 # Servirtium demo for Javascript
 
 This repo was build following the step by step guide at https://servirtium.dev/new 
@@ -10,9 +13,9 @@ Someone wanting to see an example of how to use Servirtium for a NodeJS project 
 
 # Climate API library premise
 
-A reusable library for JavaScript usage that gives you average rainfall for a country. This implementation (the reference implementation) uses The world bank's REST Web-APIs - http://climatedataapi.worldbank.org/climateweb/rest/v1/country/annualavg/pr/{fromCCYY}/{toCCYY}/{countryISO}.xml - for that (other implementations may not).
+A reusable library for JavaScript usage that gives you average rainfall for a country. This implementation (the reference implementation) uses The world bank's REST Web-APIs - http://localhost:4567/climateweb/rest/v1/country/annualavg/pr/{fromCCYY}/{toCCYY}/{countryISO}.xml - for that (other implementations may not).
 
-The library comes with tests and recordings of the climatedataapi.worldbank.org service invocations for each test.
+The library comes with tests and recordings of the localhost:4567 service invocations for each test.
 
 The library comes with a means to re-record those service invocations.
 
@@ -23,7 +26,7 @@ Teams using the library (but not developing it) may:
 
 Service tests (part of the integration test class) are one thing, but there should always be a smaller number of them than pure unit tests (no I/O, less than 10ms each). Teams using this library in a larger application would use traditional in-process mocking (say via [TsMockito](https://github.com/NagRock/ts-mockito)).
 
-Another dev team could use the recordings, as is, to make a new implementation of the library for some reason (say they did not like the license). And they need not even have access to climatedataapi.worldbank.org. Some companies happily shipping Servirtium service recordings for specific test scenarios may attach a license agreement that forbids reverse engineering (of the closed-source backend, or the shipped library)
+Another dev team could use the recordings, as is, to make a new implementation of the library for some reason (say they did not like the license). And they need not even have access to localhost:4567. Some companies happily shipping Servirtium service recordings for specific test scenarios may attach a license agreement that forbids reverse engineering (of the closed-source backend, or the shipped library)
 
 # Building & Tests
     

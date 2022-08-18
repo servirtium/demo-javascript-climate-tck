@@ -3,7 +3,7 @@ import ClimateAPI, { IClimateAPI } from './climate'
 describe('climateAPI direct', () => {
   let climateApiClient: IClimateAPI
   beforeAll(() => {
-    climateApiClient = new ClimateAPI('http://climatedataapi.worldbank.org')
+    climateApiClient = new ClimateAPI('http://localhost:4567')
   })
 
   it('TestAverageRainfallForGreatBritainFrom1980to1999Exists', async () => {

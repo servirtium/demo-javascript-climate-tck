@@ -3,12 +3,8 @@
 
 ```
 connection: close
-accept-encoding: gzip, deflate
-host: climatedataapi.worldbank.org
-origin: http://localhost
-accept-language: en
+host: localhost:4567
 user-agent: Servirtium-Agent
-referer: http://localhost/
 accept: application/json, text/plain, */*
 ```
 
@@ -21,26 +17,18 @@ accept: application/json, text/plain, */*
 ### Response headers recorded for playback:
 
 ```
-date: Sun, 09 Aug 2020 18:42:45 GMT
-content-type: application/json
-connection: close
-set-cookie: MASKED
-access-control-allow-origin: *
-access-control-allow-headers: X-Requested-With
-access-control-allow-methods: GET
-strict-transport-security: max-age=31536000; includeSubDomains
+content-type: application/xml;charset=utf-8
+last-modified: Thu, 18 Aug 2022 21:49:59 GMT
+content-length: 48
 x-xss-protection: 1; mode=block
 x-content-type-options: nosniff
-content-security-policy: default-src 'self'
-x-frame-options: deny
-cache-control: no-cache,no-store
-pragma: no-cache
-secure: true
-httponly: true
-transfer-encoding: chunked
+x-frame-options: SAMEORIGIN
+server: WEBrick/1.6.1 (Ruby/2.7.4/2021-07-07)
+date: Sun, 09 Aug 2020 18:42:45 GMT
+connection: close
 ```
 
-### Response body recorded for playback (200: application/json):
+### Response body recorded for playback (200: application/xml;charset=utf-8):
 
 ```
 Invalid country code. Three letters are required
