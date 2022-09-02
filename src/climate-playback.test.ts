@@ -5,7 +5,7 @@ describe('climateAPI playback', () => {
   let climateApiClient: IClimateAPI
   let servirtium: IServirtium
   beforeAll(() => {
-    climateApiClient = new ClimateAPI('http://localhost:61417')
+    climateApiClient = new ClimateAPI('http://servirtium.local.gd:61417')
     servirtium = new Servirtium()
     servirtium.startPlayback()
   })

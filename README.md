@@ -1,9 +1,15 @@
-Note - TheWorkdBank took down their climate WebAPI. Darn it. We now depend on a docker version of the same until we work out what to do long term.
-Docker build and deploy this locally - https://github.com/servirtium/worldbank-climate-recordings - see README
+Note - The World Bank took down their climate WebAPI. Darn it. We now depend on a docker version of the same until we work out what to do long term. Docker build and deploy this locally - https://github.com/servirtium/worldbank-climate-recordings - see README
+
+TL;DR: 
+
+```
+docker build git@github.com:servirtium/worldbank-climate-recordings.git#main -t worldbank-api
+docker run -d -p 4567:4567 worldbank-api
+```
 
 # Servirtium demo for Javascript
 
-This repo was build following the step by step guide at https://servirtium.dev/new 
+This repo was build following the step-by-step guide at [https://servirtium.dev/new](https://servirtium.dev/new)
 
 - status: pretty much complete
 
