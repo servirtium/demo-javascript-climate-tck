@@ -10,7 +10,11 @@ describe('climateAPI record', () => {
     // Refer https://github.com/servirtium/worldbank-climate-recordings -->
     servirtium = new Servirtium('http://worldbank-api-for-servirtium.local.gd:4567')
     servirtium.setCallerRequestHeaderReplacements({ "user-agent: (.*)": "user-agent: Servirtium-Agent" })
-    servirtium.setRecordResponseHeaderReplacements({ "set-cookie: (.*)": "set-cookie: MASKED", "date: (.*)": "date: Sun, 09 Aug 2020 18:42:45 GMT" })
+    servirtium.setRecordResponseHeaderReplacements({
+      "set-cookie: (.*)": "set-cookie: MASKED",
+      "date: (.*)": "date: Sun, 09 Aug 2020 18:42:45 GMT",
+      "for_testing: (.*)": "for_testing: SERVIRTIUM-REDACTED"
+    })
     servirtium.startRecord(() => {
       done()
     })
