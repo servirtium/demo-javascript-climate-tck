@@ -7,6 +7,9 @@ describe('climateAPI playback', () => {
   beforeAll(() => {
     climateApiClient = new ClimateAPI('http://servirtium.local.gd:61417')
     servirtium = new Servirtium()
+    servirtium.setCallerResponseHeaderReplacements({
+      "for_testing: (.*)": "for_testing: " + Math.random() // simulate something that was random before recording
+    })
     servirtium.startPlayback()
   })
 
