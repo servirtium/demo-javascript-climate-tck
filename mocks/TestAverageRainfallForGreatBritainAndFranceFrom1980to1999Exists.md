@@ -3,7 +3,7 @@
 
 ```
 connection: close
-host: localhost:4567
+host: worldbank-api-for-servirtium.local.gd:4567
 user-agent: Servirtium-Agent
 accept: application/json, text/plain, */*
 ```
@@ -19,6 +19,7 @@ accept: application/json, text/plain, */*
 ```
 content-type: application/xml;charset=utf-8
 last-modified: Tue, 16 Aug 2022 20:58:48 GMT
+for_testing: 7907ed41-0291-4639-921c-67fea2863a18
 content-length: 3221
 x-xss-protection: 1; mode=block
 x-content-type-options: nosniff
@@ -40,7 +41,7 @@ connection: close
 
 ```
 connection: close
-host: localhost:4567
+host: worldbank-api-for-servirtium.local.gd:4567
 user-agent: Servirtium-Agent
 accept: application/json, text/plain, */*
 ```
@@ -56,6 +57,7 @@ accept: application/json, text/plain, */*
 ```
 content-type: application/xml;charset=utf-8
 last-modified: Tue, 16 Aug 2022 20:58:48 GMT
+for_testing: f120fdb6-d030-4250-a69d-5fc467aeb708
 content-length: 3226
 x-xss-protection: 1; mode=block
 x-content-type-options: nosniff

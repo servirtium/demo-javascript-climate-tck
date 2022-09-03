@@ -3,7 +3,7 @@
 
 ```
 connection: close
-host: localhost:4567
+host: worldbank-api-for-servirtium.local.gd:4567
 user-agent: Servirtium-Agent
 accept: application/json, text/plain, */*
 ```
@@ -19,6 +19,7 @@ accept: application/json, text/plain, */*
 ```
 content-type: application/xml;charset=utf-8
 last-modified: Tue, 16 Aug 2022 20:58:48 GMT
+for_testing: ee90abec-5acc-404a-9246-be575a5b8ade
 content-length: 3228
 x-xss-protection: 1; mode=block
 x-content-type-options: nosniff
