@@ -1,10 +1,20 @@
 import ClimateAPI, { IClimateAPI } from './climate'
+import fs from "fs";
 
 describe('climateAPI direct', () => {
   let climateApiClient: IClimateAPI
+
+  // Served via docker on the same machine as the test runner. See README
+  var realService: string= 'http://worldbank-api-for-servirtium.local.gd:4567'
+
+  if (fs.existsSync(".useGithubHostedRealService")) {
+    // statically served on GitHub-pages
+    realService = 'https://servirtium.github.io/worldbank-climate-recordings'
+  }
+
   beforeAll(() => {
     // Refer https://github.com/servirtium/worldbank-climate-recordings -->
-    climateApiClient = new ClimateAPI('http://worldbank-api-for-servirtium.local.gd:4567')
+    climateApiClient = new ClimateAPI(realService)
   })
 
   it('TestAverageRainfallForGreatBritainFrom1980to1999Exists', async () => {

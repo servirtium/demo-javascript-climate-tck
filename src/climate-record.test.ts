@@ -1,14 +1,21 @@
 import ClimateAPI, { IClimateAPI } from './climate'
 import Servirtium, { IServirtium } from '@servirtium/recorder'
+import fs from 'fs';
 
 describe('climateAPI record', () => {
   let climateApiClient: IClimateAPI
   let servirtium: IServirtium
 
+  var realService: string= 'http://worldbank-api-for-servirtium.local.gd:4567'
+
+  if (fs.existsSync(".useGithubHostedRealService")) {
+    realService = 'https://servirtium.github.io/worldbank-climate-recordings'
+  }
+
   beforeAll((done) => {
     climateApiClient = new ClimateAPI('http://servirtium.local.gd:61417')
     // Refer https://github.com/servirtium/worldbank-climate-recordings -->
-    servirtium = new Servirtium('http://worldbank-api-for-servirtium.local.gd:4567')
+    servirtium = new Servirtium(realService)
     servirtium.setCallerRequestHeaderReplacements({ "user-agent: (.*)": "user-agent: Servirtium-Agent" })
     servirtium.setRecordResponseHeaderReplacements({
       "set-cookie: (.*)": "set-cookie: MASKED",
