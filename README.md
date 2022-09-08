@@ -99,3 +99,5 @@ Command: `yarn test -- src/climate-record.test.ts`
 Command: `yarn test -- src/climate-playback.test.ts`
 
 ![image](https://user-images.githubusercontent.com/82182/90219297-a00ea480-ddfd-11ea-9610-6450d949d0df.png)
+
+Note the playback mode is quickest.
