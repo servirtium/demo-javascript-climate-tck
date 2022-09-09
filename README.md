@@ -19,22 +19,27 @@ As well as making a Servirtium library for a language, this step by step guild l
 
 Someone wanting to see an example of how to use Servirtium for a NodeJS project would look at ths repo's source. Someone wanting to learn Servirtium by tutorial or extensive reference documentation needs to look elsewhere - sorry!
 
-# Climate API library premise
+# Climate API library test harness
 
-A reusable library for JavaScript usage that gives you average rainfall for a country. This implementation (the reference implementation) uses The world bank's REST Web-APIs - http://localhost:4567/climateweb/rest/v1/country/annualavg/pr/{fromCCYY}/{toCCYY}/{countryISO}.xml - for that (other implementations may not).
+A reusable library for JavaScript usage that gives you average rainfall for a country, is what was made to serve as a test harness for this demo. The test harness in turn uses The world bank's REST Web-APIs - `/climateweb/rest/v1/country/annualavg/pr/{fromCCYY}/{toCCYY}/{countryISO}.xml` - for that. See note at top of README.
 
-The library comes with tests and recordings of the localhost:4567 service invocations for each test.
+The demo comes has unit tests and recordings of service interactions for each test.  The recordings are in the [mocks](mocks) folder.
 
-The library comes with a means to re-record those service invocations.
+The library comes with a means to re-record those service interactions, using Servirtium in "record" mode.
 
-Teams using the library (but not developing it) may:
+Teams evaluating the Servirtium library (but not developing it) would:
 
-* use the recordings to make their own builds fast and always green (versus slow and flaky).
-* write their own service test scenarios and use Servirtium to record the Worldbank interaction as above (more likely)
+* ignore the world back climate API aspect of this (just for the sake of the demo)
+* focus on a HTTP service their application uses (but could easily be outside the dev team in question)
+* write their own tests (using their preferred test runner - Mocha, Jasmine, Cucumber.js are fine choices). 
+* make servirtium optionally do recordings as a mode of operation (commit those recording to Git)
+* enjoy their own builds being fast and always green (versus slow and flaky).
+* have a non-CI build (daily/weekly) that attempts to re-record and alert that recordings have changed
+* remember to keep secrets out of source control (passwords, API tokens and more).
 
-Service tests (part of the integration test class) are one thing, but there should always be a smaller number of them than pure unit tests (no I/O, less than 10ms each). Teams using this library in a larger application would use traditional in-process mocking (say via [TsMockito](https://github.com/NagRock/ts-mockito)).
+Service tests favilitated by Servirtium (part of the "integration test" class) are one thing, but there should always be a much smaller number of them than **pure unit tests** (no I/O, less than 10ms each). Teams using this library in a larger application would use traditional in-process mocking (say via [TsMockito](https://github.com/NagRock/ts-mockito)) for the pure unit tests. Reliance on "integration tests" for development on localhost (or far worse a named environment like "dev" or "qa") is a fools game.
 
-Another dev team could use the recordings, as is, to make a new implementation of the library for some reason (say they did not like the license). And they need not even have access to localhost:4567. Some companies happily shipping Servirtium service recordings for specific test scenarios may attach a license agreement that forbids reverse engineering (of the closed-source backend, or the shipped library)
+Another dev team could use the recordings, as is, to make a new implementation of the library for some reason (say they did not like the license). And they need not even have access to localhost:4567. Some companies happily shipping Servirtium service recordings for specific test scenarios may attach a license agreement that forbids reverse engineering (of the closed-source backend, or the shipped library).
 
 # Building & Tests
     
@@ -50,7 +55,7 @@ yarn install
 yarn test
 ```
 
-There are 18 Jest tests in this "TCK" project:
+There are 18 Jest tests in this technology compatibility kit (TCK) project that serves as a demo.
 
 * 6 tests that don't use Servirtium and directly invoke services on WorkBank.com's climate endpoint. 
 * 6 tests that do the above, but also record the interactions via Servirtium
@@ -80,7 +85,7 @@ test_averageRainfallForGreatBritainAndFranceFrom1980to1999CanBeCalculatedFromTwo
     assert climateApi.getAveAnnualRainfall(1980, 1999, "gbr", "fra") == 951.3220963726872
 ```
 
-These six are repeated three times in this testbase: six direct, six record and six playback.
+As mentioned, these six are repeated three times in this testbase: six direct, six record and six playback.
 
 ## Running the 6 direct tests only:
 
@@ -100,4 +105,4 @@ Command: `yarn test -- src/climate-playback.test.ts`
 
 ![image](https://user-images.githubusercontent.com/82182/90219297-a00ea480-ddfd-11ea-9610-6450d949d0df.png)
 
-Note the playback mode is quickest.
+Note the playback mode is quickest. Your day to dey development of you main applications functionality would rely on this mode of operation. 
