@@ -85,7 +85,7 @@ test_averageRainfallForGreatBritainAndFranceFrom1980to1999CanBeCalculatedFromTwo
     assert climateApi.getAveAnnualRainfall(1980, 1999, "gbr", "fra") == 951.3220963726872
 ```
 
-As mentioned, these six are repeated three times in this testbase: six direct, six record and six playback.
+As mentioned, these six are repeated three times in this test-base: six direct, six record and six playback.
 
 ## Running the 6 direct tests only:
 
