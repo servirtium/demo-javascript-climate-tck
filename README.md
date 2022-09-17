@@ -57,7 +57,7 @@ yarn test
 
 There are 18 Jest tests in this technology compatibility kit (TCK) project that serves as a demo.
 
-* 6 tests that don't use Servirtium and directly invoke services on WorkBank.com's climate endpoint. 
+* 6 tests that don't use Servirtium and directly invoke services on WorldBank.com's climate endpoint. 
 * 6 tests that do the above, but also record the interactions via Servirtium
 * 6 tests that don't at all use WorldBank (or need to be online), but instead use the recordings in the above via Servirtium
 
