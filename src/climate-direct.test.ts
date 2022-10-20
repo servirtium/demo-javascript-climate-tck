@@ -4,12 +4,12 @@ import fs from "fs";
 describe('climateAPI direct', () => {
   let climateApiClient: IClimateAPI
 
-  // Served via docker on the same machine as the test runner. See README
-  var realService: string= 'http://worldbank-api-for-servirtium.local.gd:4567'
+  var realService: string= 'https://servirtium.github.io/worldbank-climate-recordings'
 
-  if (fs.existsSync(".useGithubHostedRealService")) {
-    // statically served on GitHub-pages
-    realService = 'https://servirtium.github.io/worldbank-climate-recordings'
+  // Refer https://github.com/servirtium/worldbank-climate-recordings -->
+  // Force test suite to use Docker version of the old WorldBank weather service
+  if (fs.existsSync(".useDockerVersionOfRealWorldBankWeatherService")) {
+    realService = 'http://worldbank-api-for-servirtium.local.gd:4567'
   }
 
   beforeAll(() => {
