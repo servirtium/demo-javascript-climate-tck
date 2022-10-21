@@ -43,16 +43,16 @@ Another dev team could use the recordings, as is, to make a new implementation o
 
 # Building & Tests
     
-## Yarn dependency installation
+## npm dependency installation
 
 ```
-yarn install
+npm install
 ```
 
 ## Running tests
 
 ```
-yarn test
+npm test
 ```
 
 There are 18 Jest tests in this technology compatibility kit (TCK) project that serves as a demo.
@@ -89,19 +89,19 @@ As mentioned, these six are repeated three times in this test-base: six direct, 
 
 ## Running the 6 direct tests only:
 
-Command: `yarn test -- src/climate-direct.test.ts`
+Command: `npm test -- src/climate-direct.test.ts`
 
 ![image](https://user-images.githubusercontent.com/82182/90219081-34c4d280-ddfd-11ea-9c2b-b54e270cc7cd.png)
 
 ## Running the 6 tests in record-mode only:
 
-Command: `yarn test -- src/climate-record.test.ts`
+Command: `npm test -- src/climate-record.test.ts`
 
 ![image](https://user-images.githubusercontent.com/82182/90219208-6a69bb80-ddfd-11ea-980d-ec71f7bdb59d.png)
 
 ## Running the 6 tests in playback-mode only:
 
-Command: `yarn test -- src/climate-playback.test.ts`
+Command: `npm test -- src/climate-playback.test.ts`
 
 ![image](https://user-images.githubusercontent.com/82182/90219297-a00ea480-ddfd-11ea-9610-6450d949d0df.png)
 

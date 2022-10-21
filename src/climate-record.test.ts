@@ -23,6 +23,8 @@ describe('climateAPI record', () => {
       "date: (.*)": "date: Sun, 09 Aug 2020 18:42:45 GMT",
       "for_testing: (.*)": "for_testing: SERVIRTIUM-REDACTED"
     })
+    servirtium.setRecordResponseHeadersRemoval(["x-github-request-id", "expires", "age", "x-timer", "x-cache",
+      "x-cache-hits", "x-served-by", "x-fastly-request-id", "x-origin-cache"])
     servirtium.startRecord(() => {
       done()
     })

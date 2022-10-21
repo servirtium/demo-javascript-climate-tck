@@ -26,20 +26,12 @@ last-modified: Sat, 01 Oct 2022 10:09:55 GMT
 access-control-allow-origin: *
 strict-transport-security: max-age=31556952
 etag: "633811f3-c95"
-expires: Thu, 20 Oct 2022 09:35:36 GMT
 cache-control: max-age=600
 x-proxy-cache: MISS
-x-github-request-id: 0827:7E0A:1BE62A:1CB389:63511410
 accept-ranges: bytes
 date: Sun, 09 Aug 2020 18:42:45 GMT
 via: 1.1 varnish
-age: 17
-x-served-by: cache-man4133-MAN
-x-cache: HIT
-x-cache-hits: 1
-x-timer: S1666257953.670305,VS0,VE1
 vary: Accept-Encoding
-x-fastly-request-id: a584ab22ee42d05f2a75b6a58a7629f1a8c74757
 ```
 
 ### Response body recorded for playback (200: application/xml):
@@ -77,20 +69,12 @@ last-modified: Sat, 01 Oct 2022 10:09:55 GMT
 access-control-allow-origin: *
 strict-transport-security: max-age=31556952
 etag: "633811f3-c9a"
-expires: Thu, 20 Oct 2022 09:35:36 GMT
 cache-control: max-age=600
 x-proxy-cache: MISS
-x-github-request-id: 0827:7E0A:1BE645:1CB3A8:63511410
 accept-ranges: bytes
 date: Sun, 09 Aug 2020 18:42:45 GMT
 via: 1.1 varnish
-age: 16
-x-served-by: cache-man4124-MAN
-x-cache: HIT
-x-cache-hits: 2
-x-timer: S1666257953.749234,VS0,VE1
 vary: Accept-Encoding
-x-fastly-request-id: ff750570a0f3faacf12c26f9da12bd9931416dc9
 ```
 
 ### Response body recorded for playback (200: application/xml):
