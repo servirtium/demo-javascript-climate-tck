@@ -1,3 +1,5 @@
+[![CD](https://github.com/servirtium/demo-javascript-climate-tck/actions/workflows/cd.yaml/badge.svg)](https://github.com/servirtium/demo-javascript-climate-tck/actions/workflows/cd.yaml)
+
 Note - The World Bank took down their climate WebAPI. Darn it. We now depend on a docker version of the same until we work out what to do long term. Docker build and deploy this locally - https://github.com/servirtium/worldbank-climate-recordings - see README
 
 TL;DR:
