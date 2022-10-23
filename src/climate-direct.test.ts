@@ -9,7 +9,7 @@ describe('climateAPI direct', () => {
   // Refer https://github.com/servirtium/worldbank-climate-recordings -->
   // Force test suite to use Docker version of the old WorldBank weather service
   if (fs.existsSync(".useDockerVersionOfRealWorldBankWeatherService")) {
-    realService = 'http://worldbank-api-for-servirtium.local.gd:4567'
+    realService = 'http://localhost:4567'
   }
 
   beforeAll(() => {
